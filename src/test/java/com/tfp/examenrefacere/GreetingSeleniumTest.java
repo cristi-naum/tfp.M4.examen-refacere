@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
-public class SeleniumTest {
+
+public class GreetingSeleniumTest {
 
     private static WebDriver chromeDriver;
 
@@ -16,23 +17,27 @@ public class SeleniumTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
+
         chromeDriver = new ChromeDriver(options);
     }
 
     @Test
     public void submitData() throws InterruptedException {
-        //chromeDriver.get("http://localhost:3000");
-        //PageFactory pageFactory = PageFactory.initElements(chromeDriver, PageFactory.class);
+        chromeDriver.get("http://localhost:3000/");
+        GreetingPageFactory pageFactory = PageFactory.initElements(chromeDriver, GreetingPageFactory.class);
 
-        //pageFactory.getFirstName().sendKeys("Ion");
-        //pageFactory.getLastName().sendKeys("Popescu");
-        //pageFactory.getCourseNumber().sendKeys("1");
 
-        //pageFactory.getSubmit().click();
+        pageFactory.getGreetingID().sendKeys("10");
+        pageFactory.getDescription().sendKeys("Test 10 - Selenium Test");
+        pageFactory.getPrice().sendKeys("23");
+        pageFactory.getTypeID().sendKeys("1");
+        pageFactory.getCategoryID().sendKeys("1");
+
+        pageFactory.getSubmit().click();
 
         Thread.sleep(100);
 
-        //Assertions.assertEquals("Student was added", pageFactory.getSuccessMessage().getText());
+        Assertions.assertEquals("Greeting was added!", pageFactory.getSuccessMessage().getText());
     }
 
 

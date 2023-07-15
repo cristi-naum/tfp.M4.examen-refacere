@@ -1,10 +1,15 @@
 package com.tfp.examenrefacere.service;
 
 
+import com.tfp.examenrefacere.entity.CategoryEntity;
 import com.tfp.examenrefacere.entity.GreetingEntity;
+import com.tfp.examenrefacere.entity.TypeEntity;
 import com.tfp.examenrefacere.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GreetingService {
@@ -32,6 +37,28 @@ public class GreetingService {
         greetingRepository.save(greetingEntity);
 
         return "Greeting was added!";
+    }
+
+    public void test()
+    {
+        TypeEntity typeEntity = new TypeEntity();
+
+        CategoryEntity categoryEntity = new CategoryEntity();
+
+
+    }
+
+
+    public Object getAllGreetings(){
+
+        List<Object[]> greetings;
+
+        greetings = greetingRepository.getAllGreetings();
+
+        if (greetings.size() == 0)
+            return "There are no greetings in the database!";
+
+        return greetings;
     }
 
 }
