@@ -53,7 +53,12 @@ public class GreetingService {
 
         List<Object[]> greetings;
 
+        //List<GreetingEntity> greetings;
+
         greetings = greetingRepository.getAllGreetings();
+
+        //greetings = greetingRepository.findAll();
+
 
         if (greetings.size() == 0)
             return "There are no greetings in the database!";
